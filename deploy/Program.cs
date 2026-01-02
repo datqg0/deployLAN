@@ -129,7 +129,8 @@ class Server
         Console.WriteLine($"Server IP: {ipv4}");
         Console.Write("PORT (default 3636): ");
         //int port = int.TryParse(Console.ReadLine(), out int p) ? p : 3636;
-        int port = 9000;
+        string portStr = Environment.GetEnvironmentVariable("PORT") ?? "9000";
+        int port = int.Parse(portStr);
         listener = new TcpListener(IPAddress.Any, port);
         listener.Start();
         Console.WriteLine($"Server started on port {port}");
